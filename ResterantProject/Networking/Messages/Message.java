@@ -2,5 +2,5 @@ package Messages;
 
 public interface Message {
 	
-	public void getData();
+	public MessageType getMessageType();
 }
