@@ -10,6 +10,7 @@ public class Receriver {
     //Fields
     private ServerSocket serverSocket;
     private Socket clientSocket;
+    private SocketHandler handler;
     
     //Constructor
     public Receriver() throws IOException {
@@ -19,8 +20,7 @@ public class Receriver {
     
     //Methods
     public void start() throws IOException {
-        clientSocket = serverSocket.accept();
-        
+        handler = new SocketHandler(serverSocket.accept());
     }
     
     
