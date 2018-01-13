@@ -21,11 +21,21 @@ public class ServerMessenger {
             throw new ReplyNotReadException("Previous reply not read");
         }
 
-        openConnetion();
+        try {
+            clientSocket = new Socket("EABW1707060702", 2500);
+            outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
+        } catch (UnknownHostException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
 
         if (clientSocket != null) {
             try {
                 outToServer.writeObject(msg);
+                inFromServer = new ObjectInputStream(clientSocket.getInputStream());
                 reply = (Message) inFromServer.readObject();
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -49,17 +59,6 @@ public class ServerMessenger {
         return temp;
     }
 
-    private void openConnetion() {
-        try {
-            clientSocket = new Socket("EABW1707060702", 2500);
-            outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
-            inFromServer = new ObjectInputStream(clientSocket.getInputStream());
-        } catch (UnknownHostException e) {
-            System.out.println("Could not find Host name on the network");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private void closeConnection() {
         try {

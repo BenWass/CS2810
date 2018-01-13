@@ -1,6 +1,8 @@
 package messages;
 
-public interface Message {
+import java.io.Serializable;
+
+public interface Message extends Serializable{
 	
 	public MessageType getMessageType();
 	

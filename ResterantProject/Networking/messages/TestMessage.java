@@ -2,6 +2,10 @@ package messages;
 
 public class TestMessage implements Message{
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private Integer i;
     
     public TestMessage(int i) {

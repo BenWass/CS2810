@@ -9,12 +9,10 @@ public class Receriver extends Thread{
     
     //Fields
     private ServerSocket serverSocket;
-    private ResponceStack responceStack;
     
     //Constructor
-    public Receriver(ResponceStack responceStack) throws IOException {
+    public Receriver() throws IOException {
         serverSocket = new ServerSocket(2500);
-        this.responceStack = responceStack;
     }
     
     //Methods
@@ -22,9 +20,12 @@ public class Receriver extends Thread{
     public void run() {
         while(true) {
             try {
+                System.out.println("Lissening for connection on port 2500");
                 Socket socket = serverSocket.accept();
-                NewSocketHandler handler = new NewSocketHandler(socket,responceStack);
+                System.out.println("New socket connection on port 2500");
+                NewSocketHandler handler = new NewSocketHandler(socket);
                 handler.start();
+                System.out.println("Socket given to Socket handler");
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

@@ -4,20 +4,15 @@ import java.io.IOException;
 
 public class ServerMain {
 
-    private ResponceStack responceStack;
     private Receriver receiver;
-    private SenderHandler senderHandler;
     
     public ServerMain () throws IOException {
-        responceStack = new ResponceStack();
-        senderHandler = new SenderHandler(responceStack);
-        receiver = new Receriver(responceStack);
+        receiver = new Receriver();
     }
     
     public void start() {
+        System.out.println("Starting receiver");
         receiver.start();
-        senderHandler.start();
-        
-        
+        System.out.println("Receiver running");
     }
 }
