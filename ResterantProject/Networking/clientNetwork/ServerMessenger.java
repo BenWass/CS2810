@@ -22,7 +22,7 @@ public class ServerMessenger {
         }
 
         try {
-            clientSocket = new Socket("EABW1707060702", 2500);
+            clientSocket = new Socket("192.168.0.10", 2500);
             outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
         } catch (UnknownHostException e1) {
             // TODO Auto-generated catch block

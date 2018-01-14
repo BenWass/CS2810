@@ -6,10 +6,10 @@ public class TestMessage implements Message{
      * 
      */
     private static final long serialVersionUID = 1L;
-    private Integer i;
+    private String msg;
     
-    public TestMessage(int i) {
-        this.i = i;
+    public TestMessage(String msg) {
+        this.msg = msg;
     }
     
     @Override
@@ -18,6 +18,6 @@ public class TestMessage implements Message{
     }
     
     public String toString() {
-        return i.toString();
+        return msg;
     }
 }

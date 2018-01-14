@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import messageHandlers.MessageHandler;
 import messages.*;
 
 public class NewSocketHandler extends Thread{
@@ -13,10 +14,12 @@ public class NewSocketHandler extends Thread{
     private Socket clientSocket;
     private ObjectInputStream inFromClient;
     private ObjectOutputStream outToClient;
+    private MessageHandlerFinder handlerFinder;
     
     //Constructor
     public NewSocketHandler(Socket clientSocket) {
         this.clientSocket = clientSocket;
+        handlerFinder = new MessageHandlerFinder();
     }
     
     //Methods
@@ -27,7 +30,8 @@ public class NewSocketHandler extends Thread{
             System.out.println("Input and Output streams open");
             Message msg = getMessage();
             System.out.println("Received new message from client");
-            Message reply = testResponceSim(msg);
+            MessageHandler msgHandler = handlerFinder.getHandler(msg.getMessageType());
+            Message reply = msgHandler.proccess(msg);
             sendReply(reply);
             System.out.println("Message processed, reply sent");
             closeSteams();
@@ -38,13 +42,6 @@ public class NewSocketHandler extends Thread{
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }
-    
-    private Message testResponceSim(Message msg) {
-        System.out.println(msg.toString());
-        Message relpy = new TestMessage(17);
-        return relpy;
-        
     }
     
     private void openStreams() throws IOException {
