@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import messageHandlers.MessageHandler;
+import messageHandlers.MessageHandlerFinder;
 import messages.*;
 
 public class NewSocketHandler extends Thread{

@@ -1,4 +1,4 @@
-package serverNetwork;
+package messageHandlers;
 
 import messageHandlers.*;
 import messages.MessageType;
