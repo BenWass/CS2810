@@ -18,6 +18,6 @@ public class TestMessage implements Message{
     }
     
     public String toString() {
-        return msg;
+        return "Test message containg the following test string: " + msg;
     }
 }
